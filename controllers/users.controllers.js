@@ -33,8 +33,7 @@ const createUser = async (req, res) => {
         }
       }
       recorrerObjeto(error);
-      console.log(msgs);
-      res.json(error);
+      res.json(msgs);
     }
   }
 };
@@ -81,7 +80,7 @@ const deleteUser = async (req, res) => {
     if (!user) {
       res.status(404).json({ msg: "User not found" });
     } else {
-      await User.destroy({ id: id });
+      await User.findByIdAndDelete(id)
       res.json({
         message: "User deleted successfully",
       });
